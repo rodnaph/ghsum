@@ -1,0 +1,64 @@
+#!/usr/bin/env perl
+
+use strict;
+use warnings;
+
+use Getopt::Long::Descriptive;
+
+use constant VERSION => '0.1.0';
+
+#
+# return the tarball url for the project/tag
+#
+
+sub url_for
+{
+    my ($project, $tag) = @_;
+
+    return "https://github.com/$project/tarball/$tag";
+}
+
+#
+# return the checksum of specified type of data at url
+#
+
+sub checksum
+{
+    my ($url, $type) = @_;
+    my $output = `wget -q -O - $url --no-check-certificate | openssl $type`;
+
+    $output =~ s/^\(stdin\)= (.*)\n$/$1/;
+
+    return $output;
+}
+
+#
+# print the checksum type for the project and tag
+#
+
+sub print_checksum
+{
+    my ($project, $tag, $type) = @_;
+
+    my $url = url_for($project, $tag);
+    my $checksum = checksum($url, $type);
+
+    print "$type: $checksum\n";
+}
+
+#
+# main
+#
+
+my ($opt, $usage) = describe_options(
+    "Version " . VERSION . "\nusage: ghsum user/project tag",
+    ['help', 'print usage information']
+);
+
+my ($project, $tag) = @ARGV;
+
+print($usage->text), exit if $opt->help || !$project || !$tag;
+
+print_checksum($project, $tag, 'sha256');
+print_checksum($project, $tag, 'rmd160');
+
