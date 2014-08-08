@@ -1,0 +1,5 @@
+project_type:           devel
+
+project_name:           ghsum
+portfile:               macports/Portfile
+
