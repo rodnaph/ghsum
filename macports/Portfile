@@ -4,7 +4,7 @@
 PortSystem          1.0
 PortGroup           github 1.0
 
-github.setup        rodnaph ghsum 0.0.1 v
+github.setup        rodnaph ghsum 0.0.2 v
 categories          devel shells
 platforms           darwin
 maintainers         pu-gh.com:rod
