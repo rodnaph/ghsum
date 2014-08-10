@@ -19,8 +19,8 @@ depends_lib         port:wget \
                     port:openssl \
                     port:p5.16-getopt-long-descriptive
 
-checksums           rmd160 8135a086a7ba075d5ce3596caaa46cd21705bb64 \
-                    sha256 863ce994a8a9a276f3ea8a6a395b33015540cccf08c8e419223aa8253ed42eb2
+checksums           rmd160 2b3f70d6afbc298c58d430762022090813a4d341 \
+                    sha256 fbec71eb31e41617c7081651e02672bf2efed32404f423d6d765d059e9d5ea6e
 
 use_configure       no
 supported_archs     noarch
